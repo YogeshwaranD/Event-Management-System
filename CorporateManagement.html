@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CorporateManagement</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* Navbar Styling */
+    /* Navbar Styling */
+.carousel-card {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Full screen height */
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.carousel-card .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5); /* Add transparent black background */
+}
+
+/* Overlay effect for darkening the background */
+.carousel-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Darken the background */
+    z-index: 5;
+}
+
+/* Styling for the carousel images */
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* The images should cover the viewport and transition smoothly */
+.carousel-inner img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+/* Fixes for carousel transition */
+.carousel-item {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out; /* Shortened transition time */
+}
+.carousel-item.active {
+    opacity: 1;
+}
+
+/* Pinned Text Styling */
+.carousel-text {
+    position: absolute;
+    top: 70%;
+    left: 5%; /* Set the text on the left */
+    transform: translateY(-50%); /* Adjust to vertically center the text */
+    text-align: left; /* Align text to the left */
+    color: white;
+    z-index: 20;
+    background-color: transparent; /* Darken background behind text */
+    padding: 0;
+    border-radius: none;
+}
+
+.carousel-text h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.carousel-text p {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+/* Styling for the navigation bar */
+.carousel-card .navbar .navbar-nav .nav-link {
+    color: white !important;
+}
+
+
+
+        /* Navbar Links Styling */
+      .navbar-nav .nav-link {
+    color: white !important;
+    }
+    .navbar-brand {
+    color: white !important; /* Make the text color white */
+}
+.card .btn {
+  border-radius: 4px;
+  margin-top: 10px;
+}
+.btn.btn-carousel {
+  background-color: Orchid; /* WhatsApp Green */
+  color: white; /* White text */
+}
+
+.btn.btn-carousel:hover {
+  background-color: Plum; /* Darker green for hover */
+}
+
+.navbar-logo {
+    width: 80px;  /* Resize the logo to 80px width */
+    height: auto; /* Maintain the aspect ratio */
+    filter: brightness(0) invert(1); /* Makes the logo appear white if it's a dark logo */
+}
+.carousel-item-next, .carousel-item-prev {
+            opacity: 0 !important; /* Ensure transition happens smoothly */
+        }
+
+/* Global Reset for <p> and <h> tags */
+/* Reset margin and padding for body, headings, and paragraphs */
+body, p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensure padding and border don't affect width */
+}
+
+/* Global Styles for <p> */
+p {
+    font-family: 'Arial', sans-serif;  /* A clean, modern font */
+    font-size: 16px;  /* Slightly larger font size for better readability */
+    line-height: 1.75;  /* Increased line height for better readability */
+    color: #333;  /* Dark gray color for text */
+    margin-bottom: 1.5rem;  /* Slightly more space between paragraphs */
+    word-wrap: break-word;  /* Ensure long words wrap to the next line */
+    letter-spacing: 0.5px;  /* Subtle letter spacing to improve readability */
+    text-align: justify;  /* Justify text for a more professional look */
+    max-width: 1000px;  /* Prevent paragraphs from becoming too wide */
+    margin: 0 auto; /* Center the paragraph */
+}
+
+/* Global Styles for <h1>, <h2>, <h3>, <h4>, <h5>, <h6> */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Arial', sans-serif;  /* Keep the same font family for consistency */
+    font-weight: 500;  /* Lighter font weight for a more modern look */
+    color: #222;  /* Set a slightly darker color for headings */
+    margin-bottom: 0.75rem;  /* Add spacing below headings */
+    letter-spacing: 1px;  /* Slight letter-spacing for cleaner look */
+    text-transform: capitalize;  /* For a professional heading look */
+}
+
+/* Specific heading font sizes */
+h1 {
+    font-size: 3rem;  /* Slightly larger size for h1 */
+    margin-top: 1.25rem;  /* Space above h1 */
+}
+
+h2 {
+    font-size: 2.25rem;  /* Adjust font size for h2 */
+    margin-top: 1rem;
+}
+
+h3 {
+    font-size: 2rem;  /* Adjust font size for h3 */
+    margin-top: 1rem;
+}
+
+h4 {
+    font-size: 1.75rem;  /* Adjust font size for h4 */
+    margin-top: 1rem;
+}
+
+h5 {
+    font-size: 1.5rem;  /* Adjust font size for h5 */
+    margin-top: 1rem;
+}
+
+h6 {
+    font-size: 1.25rem;  /* Adjust font size for h6 */
+    margin-top: 1rem;
+}
+
+/* Optional: Add more fine-tuned spacing or adjustments */
+h1, h2, h3 {
+    margin-top: 1.25rem;  /* Add space on top of the headings for better flow */
+    text-transform: uppercase;  /* Uppercase for a more professional feel */
+}
+
+/* Optional: For a more formal text block look, adjust the margin of the <h1>, <h2>, etc. */
+h1, h2, h3 {
+    font-weight: 600;  /* Slightly stronger weight for headers */
+    color: #1a1a1a;  /* A softer black for the headers */
+    letter-spacing: 1.5px; /* Increase letter spacing slightly for clean text */
+    text-align: center; /* Center the headings */
+}
+
+/* Add space between headings and other text */
+h1, h2, h3 {
+    margin-bottom: 0.75rem;  /* Add space after the headings */
+}
+
+/* Additional tweaks for better typography */
+body {
+    font-size: 16px; /* Set a base font size for the body text */
+    line-height: 1.75; /* Ensure enough line height for comfort */
+    letter-spacing: 0.5px; /* Slight spacing for better readability */
+    color: #333;  /* Maintain a dark gray color for text */
+    background-color: #f7f7f7; /* A soft background color */
+}
+
+/* Optional: Adding a subtle text shadow to headings for emphasis */
+h1, h2, h3 {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);  /* Light shadow for emphasis */
+}
+
+/* Override styles for .carousel-text */
+.carousel-text h2 {
+    font-family: 'Arial', sans-serif;  /* Specify a different font-family if needed */
+    font-size: 1.5rem;  /* Smaller font size for h2 */
+    font-weight: bold;
+    color: white;  /* Set text color */
+    margin: 0;  /* Remove margin */
+    padding: 0;  /* Remove padding */
+    text-align: left;  /* Align text to the left */
+}
+
+.carousel-text p {
+    font-family: 'Arial', sans-serif;  /* Specify a different font-family if needed */
+    font-size: 1rem;  /* Smaller font size for paragraph */
+    color: white;  /* Set text color */
+    margin: 0;  /* Remove margin */
+    padding: 0;  /* Remove padding */
+    text-align: left;  /* Align text to the left */
+}
+
+/* Optional: Style the button */
+.carousel-text .btn-carousel {
+    background-color: Orchid;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.carousel-text .btn-carousel:hover {
+    background-color: Plum;
+}
+
+
+ .pinned-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            font-size: 40px;
+            color: #18dc1f;
+        }
+
+        /* Optional: Hover effect for the icon */
+        .pinned-whatsapp:hover {
+            transform: scale(1.1);
+        }
+        /* Add a unique class or ID to the specific card container */
+/* Add a unique class or ID to the specific card container */
+/* Add a unique class or ID to the specific card container */
+/* Add a unique class or ID to the specific card container */
+/* Card Styles with background image */
+   .custom-card1-fullscreen {
+            position: relative;
+            width: 100%;
+            min-height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Hide any overflowing content */
+            border-radius: 10px; /* Rounded corners for the card */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow for the card */
+            background: url('Images/LASTCARD.jpg') no-repeat center center; /* Use your custom background image */
+            background-size: cover; /* Cover the entire card area */
+            padding: 30px; /* Add some padding inside the card */
+            color: white; /* Set text color to white for better contrast */
+        }
+
+        /* Logo adjustment */
+        .custom-card1-fullscreen .img-center {
+            max-width: 40%; /* Adjust logo to 40% of the container's width */
+            height: auto; /* Maintain the aspect ratio */
+            margin-bottom: 20px; /* Space below the logo */
+        }
+
+        /* Footer card styling */
+        .custom-card1-fullscreen .footer-card {
+            background-color: rgba(255, 255, 255, 0.9); /* Light background for footer */
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            z-index: 1; /* Make sure footer is above the background */
+        }
+
+        /* Remove underlines from footer links and make text white */
+               .custom-card1-fullscreen .footer-card {
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent black background */
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            z-index: 1; /* Make sure footer is above the background */
+            color: white; /* Set all text in the footer to white */
+        }
+
+        /* Footer links */
+        .footer-card a {
+            text-decoration: none; /* Remove underline */
+            color: white; /* Set text color to white */
+        }
+
+        /* Change link color on hover */
+        .footer-card a:hover {
+            color: #f1f1f1; /* Lighter white for hover effect */
+        }
+
+        /* Footer column layout */
+        .footer-card .row {
+            display: flex;
+            flex-wrap: wrap; /* Allow links to wrap into multiple rows */
+        }
+
+        /* Footer columns (C1, C2, C3, C4) */
+        .footer-card .col-md-3 {
+            margin-bottom: 20px;
+        }
+
+        /* Footer heading styling */
+        .footer-card h5 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: white; /* Make sure headings are white */
+        }
+
+        /* Adjust space between each link in the footer */
+        .footer-card .row .col-12 {
+            margin-bottom: 8px; /* Space between each link */
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            /* Adjust footer column layout for smaller screens */
+            .footer-card .row {
+                flex-direction: column; /* Stack the columns vertically */
+            }
+        }
+		.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Space between icons */
+}
+.contact-info {
+  text-align: center;
+}
+
+.contact-info p {
+  margin: 5px 0; /* Adds space between contact lines */
+  font-size: 16px;
+}	
+.special-paragraph {
+  text-align: center; /* Centers the text horizontally */
+  line-height: 1.6; /* Adjust line spacing for better readability */
+  letter-spacing: 0.5px; /* Adds subtle space between characters for a more polished look */
+  max-width: 800px; /* Sets a maximum width to prevent the paragraph from stretching too wide */
+  margin: 0 auto; /* Centers the paragraph within its container */
+  padding: 20px; /* Adds padding to create some space around the text */
+  font-size: 18px; /* Sets the font size for better readability */
+ 	/* Sets a clean, professional font */
+  color: white; /* Dark grey text color for a more professional appearance */
+  text-indent: 30px; /* Indentation at the start of the paragraph */
+}
+ body {
+            font-family: Arial, sans-serif;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #333;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-heading {
+            font-size: 28px;
+            color: #333;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }/* Make the dropdown background transparent */
+.nav-item .dropdown-menu {
+    background-color: transparent !important; /* Transparent background */
+    box-shadow: none !important; /* Remove shadow if any */
+}
+
+/* Always set the text color to white */
+.nav-item .dropdown-item {
+    color: white !important; /* Set text color to white */
+}
+
+/* Optional: Adjust item hover background color */
+.nav-item .dropdown-item:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Adjust this value to your preference */
+}
+ 
+ 
+ 
+    .booking {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #f8d1d9; /* Light pink background */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header style */
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Form element styling */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        input[type="time"],
+        textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #f79c42; /* Button color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #f67e29; /* Darker button color on hover */
+        }
+
+        /* Make the form inputs and button full-width */
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        input[type="time"],
+        textarea,
+        button {
+            width: 100%;
+        }
+ 
+ 
+        
+    </style>
+</head>
+
+<body>
+
+  <!-- Card with Carousel as background -->
+    <div class="carousel-card">
+    <!-- Navbar inside the card -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">                <img src="https://eventsmanagementkerala.com/wp-content/uploads/2022/09/MELODIA-LOGO-03-1-768x341.webp" alt="Logo" class="navbar-logo">
+</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="Home2.html">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Aboutus.html">ABOUT US</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            SERVICES
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="CorporateManagement.html">Corporate Event Management</a></li>
+                            <li><a class="dropdown-item" href="WeddingPlanner.html">Wedding Planner</a></li>
+                            <li><a class="dropdown-item" href="CateringService.html">Catering Service</a></li>
+                            <li><a class="dropdown-item" href="BeachWedding.html">BeachWedding</a></li>    
+                            <li><a class="dropdown-item" href="MusicandEntertainmentNewFile.html">Music And Entertainment</a></li>
+                            <li><a class="dropdown-item" href="PrivateParties.html">Private Parties</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="WeddingVenues.html">WEDDING VENUES IN KERALA</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            GALLERY
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="gallery.html">Gallery</a></li>
+                            <li><a class="dropdown-item" href="VideoGallery.html">Video Gallery</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Contactus.html">CONTACT US</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <!-- Image 1 -->
+            <div class="carousel-item active">
+                <img src="Images/wedding (28).jpg" alt="Image 1" class="d-block w-100">
+            </div>
+            <!-- Image 2 -->
+            <div class="carousel-item">
+                <img src="Images/home6.jpg" alt="Image 2" class="d-block w-100">
+            </div>
+            <!-- Image 3 -->
+            <div class="carousel-item">
+                <img src="Images/home3.jpg" alt="Image 3" class="d-block w-100">
+            </div>
+            <!-- Image 4 -->
+            <div class="carousel-item">
+                <img src="Images/home4.jpg" alt="Image 4" class="d-block w-100">
+            </div>
+            <!-- Image 5 -->
+            <div class="carousel-item">
+                <img src="Images/home5.jpg" alt="Image 5" class="d-block w-100">
+            </div>
+        </div>
+    </div>
+
+    <!-- Pinned Text -->
+    <div class="carousel-text">
+        <h2>Corporate Event Management<br> Companies in Kochi</h2>
+        <p>Experience the magic of kerala’s top corpoate event management companies in kochi.</p>
+        <p>If you want to make a statement at your next corporate event, partner with melodia event management company in kerala..</p>
+        <a href="Contactus.html" class="btn btn-carousel">Contact Us</a>
+    </div>
+</div>
+
+        
+        <div class="container">
+        <h1>The Leading Corporate Event Management Group in Kochi, Kerala</h1>
+        
+        <div class="section">
+            <p>Business meetings and corporate events are the best and most novel ways to stimulate the team and get them thinking creatively and outside the box. If your team members are new, then it enables them to interact with other existing employees, which can even result in a new fantastic business idea.</p>
+            <p>With Melodia, corporate event management companies in Kochi, Kerala goes beyond just planning a meeting. Besides arranging meetings and conferences, we also plan and execute corporate hospitality, conventions, exhibitions, client entertainment, incentive travel reward programmes, motivational events, team-building activities, and more.</p>
+            <p>We organize and carry out corporate event packages, which might involve multiple phases and a number of organizational tasks distributed over several months. As one of the leading corporate event management companies in Kochi, Kerala, Melodia specializes in the nuances of corporate events such as theming, décor, and style. We also take care of signage, entertainment, and venue sourcing, all of which are supportive activities that keep an event alive from the beginning to its end.</p>
+        </div>
+
+        <div class="section">
+            <h2>Our Approach</h2>
+            <p>Our approach to event curation is straightforward. We pay close attention to our customer’s demands and objectives and collaborate with them to realize their vision. Our experts possess the necessary skills and resources to make any corporate event a resounding success.</p>
+            <p>We take great pride in our keen eye for detail and innovative thinking while managing every part of the corporate event management in Kochi, from concept to execution. Our aim is to relieve our customers from the burden of planning so that they can focus on more important aspects of the meeting.</p>
+       		<img src="https://eventsmanagementkerala.com/wp-content/uploads/2023/05/grand-hyatt-kochi-bolgatty-p058-hotel-facade16x9-1-768x432.jpg" alt="Grand Hyatt Kochi Bolgatty Facade">	
+        </div>
+
+        <div class="section">
+            <h2>Types of Corporate Events</h2>
+            <h3>Conferences</h3>
+            <p>People within similar industries can exchange ideas and interact at conferences. These gatherings span several days and feature innumerable workshops and guest speakers. Frequently, conferences involve guest lectures, networking opportunities, and breakout sessions. For large events, we get you a complete convention center or a big space to conduct the event.</p>
+
+            <h3>Seminars</h3>
+            <p>Similar to conferences, seminars bring experts in the same field together to learn more about a specific subject. Yet, seminars are compact gatherings compared to conferences. These normally last only a few hours and can be highly interactive. A seminar can comprise people giving lectures by a group or individual.</p>
+
+            <h3>Trade Shows</h3>
+            <p>Trade Shows are excellent venues for businesses to network, generate leads, and advertise their goods and services. They are especially beneficial for companies that want to increase face-to-face encounters with potential clients, vendors, and suppliers. Therefore, as one of the leading corporate event management companies in Kochi, Kerala, Melodia identifies the right convention center, hotel, or arenas that are frequent venues for trade exhibitions. Attended by several organizations from the same industry, these businesses erect booths or may even sponsor the trade show itself for more visibility.</p>
+
+            <h3>Product Launches</h3>
+            <p>The release of a new product assists businesses in creating a constructive discussion around its most recent goods and services. Media representatives may also be invited to write about the new introduction into the market, giving the product enough leverage and propaganda. This particular corporate event may involve inviting guest lecturers, celebrity guests, entertainment, and giving away goodie bags. Melodia executes all formalities involved in a product launch event.</p>
+
+            <h3>Corporate Dinners</h3>
+            <p>Corporate Dinners come in a variety of formats and comprise various goals and a variety of guests. Business meals during these times are not uncommon, and new members may be welcomed to the team. The event is held to reward employees, boost their morale, and mark milestones. A business-related meal has a specific objective in mind and is more likely a strategy session. Therefore, we book a prestigious restaurant and a sophisticated meal that might even be held to please a new client or seal a contract.</p>
+
+            <h3>Team-Building</h3>
+            <p>Employees can interact with each other and enhance communication and develop problem-solving skills while tightening the team’s relationship through team-building activities. These last less than a day or, sometimes, even an entire day. A variety of instructive, inspiring, and enjoyable activities, including games, obstacle courses, and scavenger hunts, are held. We provide you with a range of physical and mental challenges throughout the event that promotes team-building.</p>
+
+            <h3>Board Meetings</h3>
+            <p>Typically, board meetings happen once or twice a year. During this time, the company’s financial situation and general health are examined, and in case of any discrepancies, the board revises certain strategies and other crucial business choices in light of its findings. The board must meet at a stipulated place and time to make wise and informed decisions, preferably in a high-end hotel with an exclusive space. Kerala’s Melodia Event Management company, books the best venues and the most palatable menus for your board meetings.</p>
+        </div>
+
+        <div class="section">
+            <h2>Planning a Great Corporate Event</h2>
+            <p>From pre-event planning to executing the event, Melodia takes care of every element keeping in mind the budgetary constraints of every client.</p>
+            <p>During the pre-event planning stage, we set the goals and objectives while identifying the occasion’s theme and the attendees, clearly keeping their expectations in mind.</p>
+            <p>Thereafter, we set the event’s budget considering each possible expense. We allocate resources according to your monetary strengths if price negotiations are inevitable.</p>
+            <p>Guest list preparation is a tedious task. That is why we deploy experts who will closely collaborate with you to invite the right clients and those who can positively contribute to the event. Where required, we also create attractive invitation cards for them. As a premium corporate event management company in Kochi, we fully understand your objectives before accomplishing these tasks.</p>
+            <p>You must choose a venue that appeals to your target audience, which your clients and employees will appreciate. We also narrow down the theme of the event to aptly reflect the goals of the occasion.</p>
+            <p>Where required, Melodia Corporate Event Management Company in Kochi, Kerala, spends time on marketing and advertising your event to garner enough attention and excite the audience. The activity is bound to keep you ahead on the competitive leaderboard.</p>
+        </div>
+    </div>    
+        
+        
+        
+        
+        
+        
+        </div>
+        
+        
+        
+        
+        
+        
+ <a href="https://wa.me/918220308767" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+       alt="WhatsApp" 
+       style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); cursor: pointer;" 
+       onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 12px rgba(0, 0, 0, 0.3)';" 
+       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.2)';">
+</a>
+  
+ 
+ 
+ 
+ 
+<div class="booking">
+    <h2>CorporateManagement</h2>
+    <form action="booking" method="get">
+        <label for="full_name">Full Name</label>
+        <input type="text" id="full_name" name="full_name" required placeholder="Enter your full name">
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email address">
+
+        <label for="phone_number">Phone Number</label>
+        <input type="tel" id="phone_number" name="phone_number" required placeholder="Enter your phone number">
+
+        <label for="event_date">Event Date</label>
+        <input type="date" id="event_date" name="event_date" required>
+
+        <label for="event_location">Event Location</label>
+        <input type="text" id="event_location" name="event_location" required placeholder="Enter event location">
+
+        <label for="number_of_guests">Number of Guests</label>
+        <input type="text" id="number_of_guests" name="number_of_guests" required min="20" placeholder="Enter number of guests" oninput="updateCost()" pattern="\d*" style="ime-mode: disabled;">
+
+        <label for="cost">Cost (INR)</label>
+        <input type="text" id="cost" name="cost" placeholder="Cost will be auto-calculated" readonly>
+
+        <!-- Start Time Input -->
+        <label for="start_time">Event Start Time</label>
+        <input type="time" id="start_time" name="start_time" required onchange="checkTimeSlot()">
+
+        <!-- End Time Input -->
+        <label for="end_time">Event End Time</label>
+        <input type="time" id="end_time" name="end_time" required onchange="checkTimeSlot()">
+
+        <label for="event_description">Event Description</label>
+        <textarea id="event_description" name="event_description" rows="4" placeholder="Enter a brief description of your event" required></textarea>
+
+        <input type="hidden" name="event_type" value="Beach Weddings">
+
+        <button type="submit">Book Beach Weddings</button>
+
+       
+        
+    </form>
+</div>
+
+<!-- Notification Banner -->
+<div id="notification-banner" style="display:none; background-color: #f8d7da; padding: 10px; text-align: center; color: #721c24; border: 1px solid #f5c6cb;">
+    <strong>Note:</strong> If you choose to extend your event for an additional 4 hours, there will be an extra charge of ₹5000 per hour.
+    <button onclick="closeNotification()">Close</button>
+</div>
+
+<script>
+    function updateCost() {
+        var numGuests = document.getElementById("number_of_guests").value;
+        var costField = document.getElementById("cost");
+
+        // Base cost and additional cost per guest
+        var baseCost = 40000; // ₹40,000 for 30 guests
+        var additionalCostPerGuest = 1000; // ₹1000 per additional guest after 30 guests
+
+        if (numGuests >= 30) {
+            var extraGuests = numGuests - 30;
+            var totalCost = baseCost + (extraGuests * additionalCostPerGuest);
+            costField.value = "₹ " + totalCost;
+        } else {
+            costField.value = ""; // Allow user to enter their own cost for fewer than 30 guests
+        }
+    }
+
+    // Function to check if the end time is past 4 hours (e.g., after 5 PM)
+ function checkTimeSlot() {
+    var startTime = document.getElementById("start_time").value;
+    var endTime = document.getElementById("end_time").value;
+    var notification = document.getElementById("notification-banner");
+
+    // Convert time (start and end) to minutes for easier comparison
+    var startParts = startTime.split(':');
+    var startHours = parseInt(startParts[0]);
+    var startMinutes = parseInt(startParts[1]);
+
+    var endParts = endTime.split(':');
+    var endHours = parseInt(endParts[0]);
+    var endMinutes = parseInt(endParts[1]);
+
+    var startTotalMinutes = (startHours * 60) + startMinutes;
+    var endTotalMinutes = (endHours * 60) + endMinutes;
+
+    // Calculate the duration in minutes
+    var duration = endTotalMinutes - startTotalMinutes;
+
+    // Check if the event duration is more than 4 hours (240 minutes)
+    if (duration > 240) {  // More than 4 hours
+        notification.style.display = 'block';  // Show the notification
+    } else {
+        notification.style.display = 'none';  // Hide the notification if the duration is 4 hours or less
+    }
+}
+
+// Function to close the notification
+function closeNotification() {
+    var notification = document.getElementById("notification-banner");
+    notification.style.display = 'none';
+}
+
+</script>
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+  
+  
+  
+  
+  <div class="custom-card1-fullscreen">
+        <!-- Card Content -->
+        <div class="row">
+            <div class="col-md-12">
+              <div class="social-icons">
+      <i class="fa-brands fa-youtube fa-3x mx-2"></i>
+      <i class="fa-brands fa-instagram fa-3x mx-2"></i>
+      <i class="fa-brands fa-facebook fa-3x mx-2"></i>
+    </div>
+<img src="https://eventsmanagementkerala.com/wp-content/uploads/2022/09/MELODIA-LOGO-03-1-1024x454.webp" 
+     alt="Logo" 
+     class="img-center" 
+     style="display: block; margin: 0 auto; width: 40%; height: auto; filter: invert(1) brightness(100%);">
+
+
+                <p class="special-paragraph" style="font-size: 14px; line-height: 1.6; letter-spacing: 0.5px; text-align: justify; color: white !important;">
+    Planning a full event has never been easier! Melodia® Event Management, an ISO 9001:2015 Certified Event Management Company based in Kerala, India, offers a wide range of services to make your events stress-free and memorable across Kerala. From premium corporate events and destination wedding planning to small-scale birthday parties and private gatherings, you can be sure we have it all covered. With offices in Kochi, Thrissur, Calicut, and Trivandrum, we also specialize in venue selection and hospitality services. We primarily serve Keralites, Malayalees, and those looking to plan destination events in Kerala. We exclusively operate within Kerala. Whether you are planning a destination event or a local celebration in Kerala, India, Melodia® is here to help.
+</p>
+
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer-card">
+            <div class="row">
+                <!-- Column 1: Quick Links -->
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <div class="row">
+                        <div class="col-12"><a href="Home2.html">Home</a></div>
+                        <div class="col-12"><a href="Aboutus.html">About</a></div>
+                        <div class="col-12"><a href="WeddingVenues.html">Venues</a></div>
+                        <div class="col-12"><a href="gallery.html">Gallery</a></div>
+                        <div class="col-12"><a href="Contactus.html 	">Contact</a></div>
+                    </div>
+                </div>
+
+                <!-- Column 2: Services -->
+                <div class="col-md-3">
+                    <h5>Services</h5>
+                    <div class="row">
+                        <div class="col-12"><a href="CorporateManagement.html">Corporate Events</a></div>
+                        <div class="col-12"><a href="WeddingPlanner.html">Wedding Planner</a></div>
+                        <div class="col-12"><a href="MusicandEntertainmentNewFile.html">Music & Entertainment</a></div>
+                        <div class="col-12"><a href="PrivateParties.html">Private Parties</a></div>
+                        <div class="col-12"><a href="BeachWedding.html">Beach Wedding</a></div>
+                    </div>
+                </div>
+
+                <!-- Column 3: Other Links -->
+                <div class="col-md-3">
+                    <h5>Other Links</h5>
+                    <div class="row">
+                       <div class="col-12"><a href="Privacy Policy.html">Privacy Policy</a></div>
+                        <div class="col-12"><a href="Cancellation.html">Cancellation and Refund Policy</a></div>
+                        <div class="col-12"><a href="Termshtml.html">Terms of Service</a></div>
+                    </div>
+                </div>
+
+                <!-- Column 4: Contact Info -->
+                <div class="col-md-3">
+    <h5 style="color: white;">Contact Info</h5>
+    <div class="row">
+        <div class="col-12">
+            <p style="color: white;">Melodia Event Management, T V Center, Kakkanad, Kochi, Kerala 682037</p>
+        </div>
+        <div class="col-12">
+            <p style="color: white;">Melodia Event Management, Flamon Complex, Main Rd, Kuriachira, Thrissur, Kerala 680006</p>
+        </div>
+        <div class="col-12">
+            <p style="color: white;">Melodia Event Management, Door No:VP 22/152ABC, Vazhakkad Panchayath, Oorkadavu, Po, Oorkadav, Akkod, Kozhikode, Kerala 673640</p>
+        </div>
+    </div>
+</div>
+<div class="contact-info" style="text-align: center; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100%;">
+    <p style="color: white !important;"><i class="fa fa-phone"></i> 9876543210</p>
+    <p style="color: white !important;"><i class="fa fa-envelope"></i> melodiaeventmanagement@gmail.com</p>
+</div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+  
+  
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  
+</body>    
+</html>
+        
